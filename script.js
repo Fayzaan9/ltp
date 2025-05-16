@@ -32,4 +32,3 @@ toggleButton.addEventListener('click', () => {
   const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   setTheme(newTheme);
 });
-

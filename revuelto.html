@@ -50,17 +50,49 @@
 </table>
 
     <h2>Gallery</h2>
-    <img src="images/revuelto/rev4.avif" alt="Revuelto Front View">
-    <img src="images/revuelto/rev1.avif" alt="Revuelto front Quarter View">
-    <img src="images/revuelto/rev6.avif" alt="Revuelto Rear Quarter View">
-    <img src="images/revuelto/rev7.avif" alt="Revuelto Rear View">
-    <img src="images/revuelto/rev8.avif" alt="Revuelto Engine View">
-    <img src="images/revuelto/rev10.avif" alt="Revuelto Interior View">
-    <img src="images/revuelto/rev12.avif" alt="Revuelto Wheel View">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <div class="carousel-track">
+        <img src="images/revuelto/rev4.avif" alt="Revuelto Front View">
+        <img src="images/revuelto/rev1.avif" alt="Revuelto front Quarter View">
+        <img src="images/revuelto/rev6.avif" alt="Revuelto Rear Quarter View">
+        <img src="images/revuelto/rev7.avif" alt="Revuelto Rear View">
+        <img src="images/revuelto/rev8.avif" alt="Revuelto Engine View">
+        <img src="images/revuelto/rev10.avif" alt="Revuelto Interior View">
+        <img src="images/revuelto/rev12.avif" alt="Revuelto Wheel View">
+      </div>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Lamborghini Tribute Page. Designed by Fayzaan Khan.</p>
   </footer>
+  <script>
+  const track = document.querySelector('.carousel-track');
+  const images = track.querySelectorAll('img');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+
+  let index = 0;
+
+  function updateCarousel() {
+    const width = images[0].clientWidth;
+    track.style.transform = `translateX(-${index * width}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+
+  window.addEventListener('resize', updateCarousel);
+  window.addEventListener('load', updateCarousel);
+</script>
 </body>
 </html>

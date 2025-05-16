@@ -51,18 +51,50 @@
 
     
     <h2>Gallery</h2>
-    <img src="images/miura/m1.jpg" alt="Miura Side View">
-    <img src="images/miura/m6.jpg" alt="Miura Rear Quarter View">
-    <img src="images/miura/m2.jpg" alt="Miura Side View Open">
-    <img src="images/miura/m3.jpg" alt="Miura Front View">
-    <img src="images/miura/m4.jpg" alt="Miura Rear Badge View">
-    <img src="images/miura/m5.jpg" alt="Miura Rear View">
-    <img src="images/miura/m7.jpg" alt="Miura Front Quarter View">
-    <img src="images/miura/m8.jpg" alt="Miura Interior View">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <div class="carousel-track">
+        <img src="images/miura/m1.jpg" alt="Miura Side View">
+        <img src="images/miura/m6.jpg" alt="Miura Rear Quarter View">
+        <img src="images/miura/m2.jpg" alt="Miura Side View Open">
+        <img src="images/miura/m3.jpg" alt="Miura Front View">
+        <img src="images/miura/m4.jpg" alt="Miura Rear Badge View">
+        <img src="images/miura/m5.jpg" alt="Miura Rear View">
+        <img src="images/miura/m7.jpg" alt="Miura Front Quarter View">
+        <img src="images/miura/m8.jpg" alt="Miura Interior View">
+      </div>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Lamborghini Tribute Page. Designed by Fayzaan Khan.</p>
   </footer>
+  <script>
+  const track = document.querySelector('.carousel-track');
+  const images = track.querySelectorAll('img');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+
+  let index = 0;
+
+  function updateCarousel() {
+    const width = images[0].clientWidth;
+    track.style.transform = `translateX(-${index * width}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+
+  window.addEventListener('resize', updateCarousel);
+  window.addEventListener('load', updateCarousel);
+</script>
 </body>
 </html>

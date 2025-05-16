@@ -50,14 +50,46 @@
 </table>
 
     <h2>Gallery</h2>
-    <img src="images/diablo/d2.jpg" alt="Diablo Front Quarter View">
-    <img src="images/diablo/d3.jpg" alt="Diablo Rear Quarter View">
-    <img src="images/diablo/d4.jpg" alt="Diablo Lights Up View">
-    <img src="images/diablo/d1.jpg" alt="Diablo Doors Up View">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <div class="carousel-track">
+        <img src="images/diablo/d2.jpg" alt="Diablo Front Quarter View">
+        <img src="images/diablo/d3.jpg" alt="Diablo Rear Quarter View">
+        <img src="images/diablo/d4.jpg" alt="Diablo Lights Up View">
+        <img src="images/diablo/d1.jpg" alt="Diablo Doors Up View">
+      </div>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Lamborghini Tribute Page. Designed by Fayzaan Khan.</p>
   </footer>
+  <script>
+  const track = document.querySelector('.carousel-track');
+  const images = track.querySelectorAll('img');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+
+  let index = 0;
+
+  function updateCarousel() {
+    const width = images[0].clientWidth;
+    track.style.transform = `translateX(-${index * width}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+
+  window.addEventListener('resize', updateCarousel);
+  window.addEventListener('load', updateCarousel);
+</script>
 </body>
 </html>
